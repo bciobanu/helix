@@ -1523,6 +1523,13 @@ impl Client {
         })
     }
 
+    pub fn switch_source_header(
+        &self,
+        text_document: lsp::TextDocumentIdentifier,
+    ) -> impl Future<Output = Result<Value>> {
+        self.call::<lsp::request::SwitchSourceHeader>(text_document)
+    }
+
     pub fn command(&self, command: lsp::Command) -> Option<impl Future<Output = Result<Value>>> {
         let capabilities = self.capabilities.get().unwrap();
 
